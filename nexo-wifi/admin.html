@@ -27,12 +27,12 @@
 </section>
 <section class="card"><h2>Antes de começar</h2><div class="help">Este painel precisa de um projeto Supabase configurado. O arquivo <b>supabase-setup.sql</b>, incluído neste repositório, cria a tabela, as permissões e o limite de 10 cadastros. Depois, crie um usuário administrador em Authentication → Users. O link público de cada cliente terá o formato <b>?loja=identificador</b>.</div></section>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const CONFIG_KEY="nexo_wifi_supabase_config",BASE_URL=location.origin+location.pathname.replace(/admin\.html$/,"");
 let client=null,editingId=null,stores=[];
 const $=id=>document.getElementById(id);
-function config(){return JSON.parse(localStorage.getItem(CONFIG_KEY)||"null")}
+function config(){return JSON.parse(localStorage.getItem(CONFIG_KEY)||"null")||window.NEXO_SUPABASE_CONFIG}
 function setStatus(id,msg){$(id).textContent=msg}
 function slugify(s){return s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,48)}
 function connect(){const c=config();if(!c?.url||!c?.key||!window.supabase)return false;client=window.supabase.createClient(c.url,c.key);$("setup").classList.add("hidden");$("login").classList.remove("hidden");return true}
