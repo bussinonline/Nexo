@@ -29,10 +29,10 @@ button{cursor:pointer}.copy-button{width:100%;min-height:88px;margin:14px 0 29px
 <footer>Tecnologia NEXO Soluções Digitais</footer>
 </section></main>
 <div class="notice" id="notice" hidden></div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const CONFIG_KEY="nexo_wifi_supabase_config";
-const config=JSON.parse(localStorage.getItem(CONFIG_KEY)||"null");
+const config=window.NEXO_SUPABASE_CONFIG;
 const params=new URLSearchParams(location.search),slug=params.get("loja");
 const notice=document.getElementById("notice");
 function showError(message){notice.hidden=false;notice.textContent=message;document.getElementById("welcome").textContent="Acesso indisponível";}
